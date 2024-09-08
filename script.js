@@ -293,3 +293,47 @@ function startPartyMode() {
     }, 5000);
     return "🎉🕺💃 Party mode activated for 5 seconds! 🎊🥳🎈";
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const menuItems = document.querySelectorAll('.menu > li > .menu-item');
+
+    function toggleSubmenu(e) {
+        if (window.innerWidth <= 600) {
+            e.preventDefault();
+            const parent = this.parentNode;
+            const isActive = parent.classList.contains('active');
+
+            // Close all open submenus
+            document.querySelectorAll('.menu > li.active').forEach(item => {
+                if (item !== parent) {
+                    item.classList.remove('active');
+                }
+            });
+
+            // Toggle the clicked submenu
+            parent.classList.toggle('active', !isActive);
+        }
+    }
+
+    menuItems.forEach(item => {
+        item.addEventListener('click', toggleSubmenu);
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 600 && !e.target.closest('#top-menu')) {
+            document.querySelectorAll('.menu > li.active').forEach(item => {
+                item.classList.remove('active');
+            });
+        }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 600) {
+            document.querySelectorAll('.menu > li.active').forEach(item => {
+                item.classList.remove('active');
+            });
+        }
+    });
+});

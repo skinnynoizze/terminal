@@ -188,18 +188,32 @@ a:hover {
         position: static;
         border: none;
         box-shadow: none;
+        display: none;
         opacity: 1;
         visibility: visible;
-        display: none;
     }
 
-    .menu > li:hover .submenu,
-    .menu > li:focus-within .submenu {
-        display: block;
+    .menu > li > .menu-item {
+        border-bottom: 1px solid var(--text-color);
+    }
+
+    .menu > li:last-child > .menu-item {
+        border-bottom: none;
     }
 
     .submenu a {
         padding-left: 30px;
+    }
+
+    /* Hide submenus by default on mobile */
+    .menu > li:hover > .submenu,
+    .submenu:hover {
+        display: none;
+    }
+
+    /* Show submenus when parent has 'active' class */
+    .menu > li.active > .submenu {
+        display: block;
     }
 }
 
