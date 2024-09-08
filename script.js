@@ -60,10 +60,27 @@ function setTheme(themeName) {
 }
 
 const commands = {
-    file: () => "File menu options: New, Open, Save, Exit",
-edit: () => "Edit menu options: Cut, Copy, Paste, Find",
-view: () => "View menu options: Zoom In, Zoom Out, Full Screen",
+  file: (args) => {
+    if (args.length === 0) {
+      return "File menu options: New, Open, Save, Exit";
+    }
+    switch (args[0].toLowerCase()) {
+      case 'new':
+        return "Creating a new file...";
+      case 'open':
+        return "Opening file...";
+      case 'save':
+        return "Saving file...";
+      case 'exit':
+        return "Exiting...";
+      default:
+        return `Unknown file command: ${args[0]}`;
+    }
+  },
 
+  edit: () => "Edit menu options: Cut, Copy, Paste, Find",
+
+  view: () => "View menu options: Zoom In, Zoom Out, Full Screen",
 
   help: () => commandStrings.help,
 
@@ -288,7 +305,7 @@ function startMatrixEffect() {
     canvas.style.display = "none";
   }, 10000);
 
-  return "Look around, Neo. It’s nothing like the world you know. But then, neither is the Matrix.";
+  return "Look around, Neo. It's nothing like the world you know. But then, neither is the Matrix.";
 }
 
 function startPartyMode() {
@@ -301,7 +318,14 @@ function startPartyMode() {
 
 document.addEventListener('DOMContentLoaded', () => {
   const menuItems = document.querySelectorAll('#terminal-menu nav ul li a');
+  const terminalMenu = document.getElementById('terminal-menu');
+  const menuToggle = document.createElement('button');
   
+  function closeMenu() {
+    terminalMenu.classList.remove('active');
+    menuToggle.textContent = '☰';
+  }
+
   menuItems.forEach(item => {
     item.addEventListener('click', (e) => {
       const command = e.target.getAttribute('data-command');
@@ -320,45 +344,57 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         userInput.dispatchEvent(enterEvent);
       }
-      // If there's no data-command attribute, the default link behavior will occur
+      
+      // Close the menu after clicking a link or command
+      if (window.innerWidth <= 600) {
+        closeMenu();
+      }
     });
   });
 
-// Add menu toggle functionality for mobile devices
-const menuToggle = document.createElement('button');
-menuToggle.textContent = '☰';
-menuToggle.style.cssText = `
-  background: none;
-  border: none;
-  color: var(--text-color);
-  font-size: 20px;
-  cursor: pointer;
-  display: none;
-  position: absolute;
-  right: 10px;
-  top: 0px;
-`;
+  // Add menu toggle functionality for mobile devices
+  menuToggle.textContent = '☰';
+  menuToggle.style.cssText = `
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 1002;
+  `;
 
-const terminalMenu = document.getElementById('terminal-menu');
-terminalMenu.querySelector('nav').prepend(menuToggle);
+  document.body.appendChild(menuToggle);
 
-menuToggle.addEventListener('click', () => {
-  terminalMenu.classList.toggle('active');
-});
+  menuToggle.addEventListener('click', () => {
+    terminalMenu.classList.toggle('active');
+    menuToggle.textContent = terminalMenu.classList.contains('active') ? '✕' : '☰';
+  });
 
-// Show/hide menu toggle based on screen width
-function toggleMenuButton() {
-  if (window.innerWidth <= 600) {
-    menuToggle.style.display = 'block';
-  } else {
-    menuToggle.style.display = 'none';
-    terminalMenu.classList.remove('active');
+  // Handle submenu toggles on mobile
+  const hasSubmenuItems = document.querySelectorAll('#terminal-menu .has-submenu > a');
+  hasSubmenuItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      if (window.innerWidth <= 600) {
+        e.preventDefault();
+        item.parentElement.classList.toggle('active');
+      }
+    });
+  });
+
+  // Show/hide menu toggle based on screen width
+  function toggleMenuButton() {
+    if (window.innerWidth <= 600) {
+      menuToggle.style.display = 'block';
+    } else {
+      menuToggle.style.display = 'none';
+      closeMenu();
+    }
   }
-}
 
-window.addEventListener('resize', toggleMenuButton);
-toggleMenuButton(); // Initial call
-
-
-  
+  window.addEventListener('resize', toggleMenuButton);
+  toggleMenuButton(); // Initial call
 });
