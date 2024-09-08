@@ -1,50 +1,56 @@
-/* Root variables */
 :root {
     --bg-color: #282c34;
     --text-color: #abb2bf;
     --prompt-color: #98c379;
     --accent-color: #61afef;
     --error-color: #e06c75;
-}
-
-/* Global styles */
-body, html {
+  }
+  body,
+  html {
     margin: 0;
     padding: 0;
     height: 100%;
     overflow: hidden;
-}
-
-body {
+  }
+  body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: 'Fira Code', monospace;
+    font-family: "Fira Code", monospace;
     transition: background-color 0.3s, color 0.3s;
-}
-
-/* Terminal container */
-#terminal {
-    height: 100%;
+  }
+  #terminal {
+    height: calc(100% - 40px); /* Subtract the height of the menu */
     overflow-y: auto;
     padding: 20px;
     box-sizing: border-box;
-    padding-top: 40px; /* Adjust this value based on your menu height */
-}
-
-/* Input line styles */
-#input-line {
+    margin-top: 40px; /* Add margin to account for the menu */
+  }
+  .hard-coded {
+      margin-top: 10px;
+      white-space: pre-wrap;
+    }
+  
+  /* Hint styles */
+  .hint {
+    opacity: 0.3;
+    filter: blur(2px);
+    transition: opacity 0.3s ease, filter 0.3s ease;
+  }
+  
+  .hint:hover {
+    opacity: 1;
+    filter: blur(0);
+  }
+  
+  #input-line {
     display: flex;
     margin-top: 10px;
-}
-
-/* Prompt styles */
-#prompt {
+  }
+  #prompt {
     color: var(--prompt-color);
     margin-right: 10px;
-}
-
-/* User input styles */
-#user-input {
+  }
+  #user-input {
     background: transparent;
     border: none;
     color: var(--text-color);
@@ -52,172 +58,126 @@ body {
     font-size: inherit;
     flex-grow: 1;
     outline: none;
-}
-
-/* Output styles */
-.output {
+  }
+  .output {
     margin-top: 10px;
     white-space: pre-wrap;
-}
-
-/* Error styles */
-.error {
+  }
+  .error {
     color: var(--error-color);
-}
-
-/* Link styles */
-.link, a {
+  }
+  .link {
     color: var(--accent-color);
     cursor: pointer;
     text-decoration: underline;
-}
-
-/* Link hover styles */
-a:hover {
-    text-decoration: none;
-}
-
-/* ASCII art styles */
-.ascii-art {
+  }
+  .ascii-art {
     font-family: monospace;
     white-space: pre;
     line-height: 1;
     color: var(--accent-color);
-}
-
-/* Animations */
-@keyframes roll {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* Hint styles */
-.hint {
-    opacity: 0.3;
-    filter: blur(2px);
-    transition: opacity 0.3s ease, filter 0.3s ease;
-}
-
-.hint:hover {
-    opacity: 1;
-    filter: blur(0);
-}
-
-@keyframes disco {
-    0% { background-color: red; }
-    33% { background-color: green; }
-    66% { background-color: blue; }
-    100% { background-color: red; }
-}
-
-/* Top Menu Styles */
-#top-menu {
-    position: sticky;
+  }
+  a {
+    color: var(--accent-color);
+    text-decoration: underline;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  
+  #terminal-menu {
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
     background-color: var(--bg-color);
     border-bottom: 1px solid var(--text-color);
     z-index: 1000;
-}
+  }
 
-.menu {
+  #terminal-menu nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+  }
+
+  #terminal-menu ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
-}
+  }
 
-.menu > li {
+  #terminal-menu li {
     position: relative;
-}
+    margin-right: 10px;
+  }
 
-.menu-item {
-    display: block;
-    padding: 10px 15px;
+  #terminal-menu a {
     color: var(--text-color);
     text-decoration: none;
+    padding: 5px 10px;
+    display: block;
     transition: background-color 0.3s, color 0.3s;
-}
+  }
 
-.menu-item:hover,
-.menu > li:hover > .menu-item {
-    background-color: var(--accent-color);
+  #terminal-menu a:hover {
+    background-color: var(--text-color);
     color: var(--bg-color);
-}
+  }
 
-.submenu {
+  #terminal-menu .submenu {
+    display: none;
     position: absolute;
     top: 100%;
     left: 0;
     background-color: var(--bg-color);
     border: 1px solid var(--text-color);
     min-width: 150px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-}
+    z-index: 1001;
+  }
 
-/* Show submenu on hover of parent li or submenu itself */
-.menu > li:hover > .submenu,
-.submenu:hover {
-    opacity: 1;
-    visibility: visible;
-}
-
-.submenu a {
-    padding: 10px 15px;
+  #terminal-menu .has-submenu:hover .submenu {
     display: block;
-    white-space: nowrap;
-    color: var(--text-color);
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
-}
+  }
 
-.submenu a:hover {
-    background-color: var(--accent-color);
-    color: var(--bg-color);
-}
+  #terminal-menu .submenu li {
+    margin: 0;
+  }
 
-/* Responsive styles */
-@media screen and (max-width: 600px) {
-    .menu {
-        flex-direction: column;
+  #terminal-menu .submenu a {
+    padding: 5px 15px;
+  }
+
+  @media (max-width: 600px) {
+    #terminal-menu ul {
+      flex-direction: column;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      right: 0;
+      background-color: var(--bg-color);
+      border-bottom: 1px solid var(--text-color);
+      display: none;
     }
 
-    .submenu {
-        position: static;
-        border: none;
-        box-shadow: none;
-        display: none;
-        opacity: 1;
-        visibility: visible;
+    #terminal-menu.active ul {
+      display: flex;
     }
 
-    .menu > li > .menu-item {
-        border-bottom: 1px solid var(--text-color);
+    #terminal-menu li {
+      margin-right: 0;
     }
 
-    .menu > li:last-child > .menu-item {
-        border-bottom: none;
+    #terminal-menu .submenu {
+      position: static;
+      border: none;
+      background-color: transparent;
     }
 
-    .submenu a {
-        padding-left: 30px;
+    #terminal-menu .submenu a {
+      padding-left: 30px;
     }
-
-    /* Hide submenus by default on mobile */
-    .menu > li:hover > .submenu,
-    .submenu:hover {
-        display: none;
-    }
-
-    /* Show submenus when parent has 'active' class */
-    .menu > li.active > .submenu {
-        display: block;
-    }
-}
-
-/* Adjust main content to accommodate the menu */
-#terminal {
-    padding-top: 40px; /* Adjust this value based on your menu height */
-}
+  }

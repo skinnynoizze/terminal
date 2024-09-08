@@ -7,46 +7,27 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header id="top-menu">
+    <header id="terminal-menu">
         <nav>
-            <ul class="menu">
-                <li>
-                    <a href="#" class="menu-item">File</a>
-                    <div class="submenu">
-                        <a href="#">New</a>
-                        <a href="#">Open</a>
-                        <a href="#">Save</a>
-                        <a href="#">Exit</a>
-                    </div>
+            <ul>
+                <li class="has-submenu">
+                    <a href="#">File</a>
+                    <ul class="submenu">
+                        <li><a href="#" data-command="file new">New</a></li>
+                        <li><a href="#" data-command="file open">Open</a></li>
+                        <li><a href="#" data-command="file save">Save</a></li>
+                        <li><a href="#" data-command="file exit">Exit</a></li>
+                    </ul>
                 </li>
-                <li>
-                    <a href="#" class="menu-item">Edit</a>
-                    <div class="submenu">
-                        <a href="#">Cut</a>
-                        <a href="#">Copy</a>
-                        <a href="#">Paste</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" class="menu-item">View</a>
-                    <div class="submenu">
-                        <a href="#">Zoom In</a>
-                        <a href="#">Zoom Out</a>
-                        <a href="#">Full Screen</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" class="menu-item">Help</a>
-                    <div class="submenu">
-                        <a href="#">Documentation</a>
-                        <a href="#">About</a>
-                    </div>
-                </li>
+                <li><a href="#">Edit</a></li>
+                <li><a href="#">View</a></li>
+                <li><a href="#" data-command="help">Help</a></li>
+                <li><a href="https://example.com" target="_blank">External Link</a></li>
             </ul>
         </nav>
     </header>
     <div id="terminal">
-        <div class="output ascii-art">
+        <div class="hard-coded ascii-art">
    _____                    _             _   
   |_   _|__ _ __ _ __ ___ (_)_ __   __ _| |  
     | |/ _ \ '__| '_ ` _ \| | '_ \ / _` | |  
@@ -58,10 +39,10 @@
  |  __/ (_) | |  | |_|  _| (_) | | | (_) |
  |_|   \___/|_|   \__|_|  \___/|_|_|\___/ 
         </div>
-        <div class="output">👨‍💻 I'm Santiago, a cybersecurity specialist and sysadmin with over 13 years of experience. 🔒 I'm passionate about open-source technologies, privacy, and cryptography, with a growing interest in blockchain, web3 development and Artificial Intelligence.</div>
+        <div class="hard-coded">👨‍💻 I'm Santiago, a cybersecurity specialist and sysadmin with over 13 years of experience. 🔒 I'm passionate about open-source technologies, privacy, and cryptography, with a growing interest in blockchain, web3 development and Artificial Intelligence.</div>
         <br>
-        <div class="output">🚀 Welcome to my terminal portfolio! Type 'help' to see available commands.</div>
-        <div class="output hint">Psst... there might be some hidden easter eggs commands. 🥚</div>
+        <div class="hard-coded">Type 'help' to see available commands.</div>
+        <div class="hard-coded hint">Psst... there might be some hidden easter eggs commands. 🥚</div>
         <div id="input-line">
             <span id="prompt">guest@portfolio:~$</span>
             <input type="text" id="user-input" autofocus>
