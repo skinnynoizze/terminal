@@ -321,6 +321,13 @@ function isMobileDevice() {
           window.matchMedia("(pointer: coarse)").matches);
 }
 
+let isTouchDevice = false;
+
+document.addEventListener('touchstart', function onFirstTouch() {
+    isTouchDevice = true;
+    document.removeEventListener('touchstart', onFirstTouch, false);
+}, false);
+
 document.addEventListener('DOMContentLoaded', () => {
   const menuItems = document.querySelectorAll('#terminal-menu nav ul li a');
   const terminalMenu = document.getElementById('terminal-menu');
@@ -424,7 +431,7 @@ document.addEventListener('DOMContentLoaded', () => {
   toggleMenuButton(); // Initial call
 
   const userInput = document.getElementById('user-input');
-  if (!isMobileDevice()) {
+  if (!isTouchDevice) {
     userInput.focus();
   }
 });
