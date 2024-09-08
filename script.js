@@ -316,6 +316,11 @@ function startPartyMode() {
   return "🎉🕺💃 Party mode activated for 5 seconds! 🎊🥳🎈";
 }
 
+function isMobileDevice() {
+  return (window.matchMedia("(max-width: 600px)").matches ||
+          window.matchMedia("(pointer: coarse)").matches);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const menuItems = document.querySelectorAll('#terminal-menu nav ul li a');
   const terminalMenu = document.getElementById('terminal-menu');
@@ -417,4 +422,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('resize', toggleMenuButton);
   toggleMenuButton(); // Initial call
+
+  const userInput = document.getElementById('user-input');
+  if (!isMobileDevice()) {
+    userInput.focus();
+  }
 });
