@@ -72,11 +72,13 @@
     text-decoration: underline;
   }
   .ascii-art {
+    display: flex;
+    margin-top: -20px;
     font-family: monospace;
     white-space: pre;
     line-height: 1;
     color: var(--accent-color);
-    margin-top: -30px;
+    font-size: 0.7em;
   }
   a {
     color: var(--accent-color);
@@ -197,5 +199,54 @@
 
     #terminal-menu .submenu a {
       padding-left: 40px;
+    }
+  }
+
+  .terminal-text {
+    animation: typing 4s steps(50, end);
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid var(--accent-color);
+    width: 0;
+  }
+
+  .computer-screen {
+    margin-left: 20px;
+    animation: flicker 0.15s infinite;
+  }
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--accent-color) }
+  }
+
+  @keyframes flicker {
+    0% {
+      opacity: 0.97;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.98;
+    }
+  }
+
+  .ascii-art {
+    text-shadow: 0 0 5px var(--accent-color);
+  }
+
+  @media (max-width: 600px) {
+    .ascii-art {
+      flex-direction: column;
+    }
+    .computer-screen {
+      margin-left: 0;
+      margin-top: 10px;
     }
   }
