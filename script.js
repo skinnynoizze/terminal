@@ -324,13 +324,21 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeMenu() {
     terminalMenu.classList.remove('active');
     menuToggle.textContent = '☰';
+    
+    // Close all open submenus
+    const openSubmenus = document.querySelectorAll('#terminal-menu .has-submenu.active');
+    openSubmenus.forEach(submenu => {
+      submenu.classList.remove('active');
+    });
   }
 
   menuItems.forEach(item => {
     item.addEventListener('click', (e) => {
       const command = e.target.getAttribute('data-command');
+      const isParentMenu = item.parentElement.classList.contains('has-submenu');
+      const isExternalLink = item.getAttribute('target') === '_blank';
       
-      if (command) {
+      if (command && !isParentMenu) {
         e.preventDefault();
         const userInput = document.getElementById('user-input');
         userInput.value = command;
@@ -343,10 +351,22 @@ document.addEventListener('DOMContentLoaded', () => {
           cancelable: true
         });
         userInput.dispatchEvent(enterEvent);
+        
+        // Close the menu after clicking a command (but not for parent menu items)
+        if (window.innerWidth <= 600) {
+          closeMenu();
+        }
+      } else if (isParentMenu) {
+        e.preventDefault(); // Prevent default action for parent menu items
+        // Toggle the active class for the submenu
+        item.parentElement.classList.toggle('active');
+      } else if (isExternalLink) {
+        // Close the menu after a short delay to allow the link to open
+        setTimeout(closeMenu, 100);
       }
       
-      // Close the menu after clicking a link or command
-      if (window.innerWidth <= 600) {
+      // Close the menu after clicking a link or command, but not for parent menu items
+      if (window.innerWidth <= 600 && !isParentMenu && (command || isExternalLink)) {
         closeMenu();
       }
     });
