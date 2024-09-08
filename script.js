@@ -258,6 +258,11 @@ userInput.addEventListener("keyup", function (event) {
     terminal.insertBefore(resultDiv, terminal.lastElementChild);
 
     terminal.scrollTop = terminal.scrollHeight;
+
+    // Prevent focusing on mobile devices
+    if (isMobileDevice()) {
+      this.blur();
+    }
   }
 });
 
@@ -321,12 +326,12 @@ function isMobileDevice() {
           window.matchMedia("(pointer: coarse)").matches);
 }
 
-let isTouchDevice = false;
-
-document.addEventListener('touchstart', function onFirstTouch() {
-    isTouchDevice = true;
-    document.removeEventListener('touchstart', onFirstTouch, false);
-}, false);
+document.addEventListener('DOMContentLoaded', () => {
+  const userInput = document.getElementById('user-input');
+  if (!isMobileDevice()) {
+    userInput.focus();
+  }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   const menuItems = document.querySelectorAll('#terminal-menu nav ul li a');
@@ -429,9 +434,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('resize', toggleMenuButton);
   toggleMenuButton(); // Initial call
-
-  const userInput = document.getElementById('user-input');
-  if (!isTouchDevice) {
-    userInput.focus();
-  }
 });
