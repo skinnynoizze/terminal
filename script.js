@@ -170,14 +170,16 @@ function checkEasterEggs(cmd) {
 function processCommand(cmd) {
   const easterEgg = checkEasterEggs(cmd);
   if (easterEgg) {
-    return easterEgg;
+    return { result: easterEgg, applyMarkdown: false };
   }
 
   const [command, ...args] = cmd.trim().toLowerCase().split(" ");
   if (commands[command]) {
-    return commands[command](args);
+    const result = commands[command](args);
+    const applyMarkdown = command === 'cv'; // Apply markdown only for 'cv' command
+    return { result, applyMarkdown };
   } else {
-    return `Command not found: ${command}. Type 'help' for available commands.`;
+    return { result: `Command not found: ${command}. Type 'help' for available commands.`, applyMarkdown: false };
   }
 }
 
@@ -251,10 +253,18 @@ userInput.addEventListener("keyup", function (event) {
     outputDiv.innerHTML = `<span style="color: var(--prompt-color);">guest@portfolio:~$</span> ${cmd}`;
     terminal.insertBefore(outputDiv, terminal.lastElementChild);
 
-    const result = processCommand(cmd);
+    const { result, applyMarkdown } = processCommand(cmd);
     const resultDiv = document.createElement("div");
     resultDiv.className = "output";
-    resultDiv.innerHTML = result;
+    
+    if (applyMarkdown) {
+      resultDiv.innerHTML = `<pre><code class="language-markdown">${result}</code></pre>`;
+      // Apply syntax highlighting
+      hljs.highlightElement(resultDiv.querySelector('code'));
+    } else {
+      resultDiv.innerHTML = result;
+    }
+    
     terminal.insertBefore(resultDiv, terminal.lastElementChild);
 
     terminal.scrollTop = terminal.scrollHeight;
