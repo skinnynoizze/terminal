@@ -153,7 +153,7 @@
   }
 
   #terminal-menu .submenu a {
-    padding: 5px 15px;
+    padding: 10px 15px;
   }
 
   #terminal-menu .submenu li a[onclick] {
@@ -194,7 +194,7 @@
     }
 
     #terminal-menu a {
-      padding: 10px 20px;
+      padding: 15px 20px;
     }
 
     #terminal-menu .submenu {

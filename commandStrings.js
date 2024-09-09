@@ -12,6 +12,8 @@ theme     - Change color theme (usage: theme "theme-name")
     about: `🖥️ Terminal CV was made with ❤️ by Santiago Menéndez-Manjón Tartiere.
 It's a new way to interact with my 📄 CV and showcase my interests.
 
+🤖 No AI was harmed in the 🛠️ development of this site.
+
 📌 Terminal Functionalities:
 - Tab completion for commands and arguments
 - Use UP and DOWN arrows to navigate through command history
@@ -19,16 +21,11 @@ It's a new way to interact with my 📄 CV and showcase my interests.
   - Matrix rain effect
   - Party mode
   - Roll screen effect
-  - Custom cursor // not implemented yet
-  - Custom background // not implemented yet
-  - Custom font // not implemented yet
-- Themes:
-  - one-dark
-  - solarized-dark
-  - dracula
-  - monokai
 
-🤖 AI has been used to 🛠️ develop this site.
+🔜 Future functionalities:
+  - Custom cursor
+  - Custom background
+  - Custom font
 `,
 
     cv: `# Santiago Menéndez-Manjón Tartiere
