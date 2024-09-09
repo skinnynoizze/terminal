@@ -1,15 +1,35 @@
 export const commandStrings = {
     help: `Available commands:
-about     - Display information about me
-cv        - View my CV (use 'cv pdf' to get PDF version)
-contact   - View my contact information
-github    - Get a link to my GitHub profile
-referrals - View my referral links
-theme     - Change color theme (usage: theme <theme-name>)
+about     - Display information about the terminal CV
 clear     - Clear the terminal
-help      - Show this help message`,
+contact   - View my contact information
+cv        - View my CV (use 'cv pdf' to get PDF version)
+github    - Get a link to my GitHub profile
+help      - Show this help message
+theme     - Change color theme (usage: theme "theme-name")
+`,
 
-    about: `👨‍💻 I'm Santiago, a cybersecurity specialist and system administrator with over 13 years of experience. 🔒 I'm passionate about open-source technologies, privacy, and cryptography, with a growing interest in blockchain and Web3 development. 🌐 My expertise spans from managing complex IT infrastructures to implementing robust security measures. 💼 Feel free to explore my portfolio to learn more about my skills and projects! 🚀`,
+    about: `🖥️ Terminal CV was made with ❤️ by Santiago Menéndez-Manjón Tartiere.
+It's a new way to interact with my 📄 CV and showcase my interests.
+
+📌 Terminal Functionalities:
+- Tab completion for commands and arguments
+- Use UP and DOWN arrows to navigate through command history
+- Hidden easter eggs commands:
+  - Matrix rain effect
+  - Party mode
+  - Roll screen effect
+  - Custom cursor // not implemented yet
+  - Custom background // not implemented yet
+  - Custom font // not implemented yet
+- Themes:
+  - one-dark
+  - solarized-dark
+  - dracula
+  - monokai
+
+🤖 AI has been used to 🛠️ develop this site.
+`,
 
     cv: `# Santiago Menéndez-Manjón Tartiere
 
@@ -109,28 +129,24 @@ Seeking to leverage my diverse skill set in a role that combines cybersecurity e
 To download a PDF version of my CV, type 'cv pdf'`,
 
     github: `Check out my GitHub profile for more projects and contributions:
-<a href="https://github.com/johndoe" target="_blank" rel="noopener noreferrer">https://github.com/johndoe</a>`,
+<a href="https://github.com/skinnynoizze" target="_blank" rel="noopener noreferrer">https://github.com/skinnynoizze</a>`,
 
-    referrals: `Here are my referral links. Using these helps support my work:
+    theme: `Change the terminal's color scheme.
+Usage: theme "theme-name"
 
-1. DigitalOcean: Get $100 in credit over 60 days
-<a href="https://m.do.co/c/1234abcd5678" target="_blank" rel="noopener noreferrer">https://m.do.co/c/1234abcd5678</a>
-
-2. Namecheap: Get 20% off your first domain registration
-<a href="https://www.namecheap.com/?affId=1234abcd" target="_blank" rel="noopener noreferrer">https://www.namecheap.com/?affId=1234abcd</a>
-
-3. Linode: Get $100 in credit for 60 days
-<a href="https://www.linode.com/?r=1234abcd5678" target="_blank" rel="noopener noreferrer">https://www.linode.com/?r=1234abcd5678</a>
-
-Thank you for your support!`,
-
-    theme: `Usage: theme <theme-name>
-Available themes: one-dark, solarized-dark, dracula, monokai`,
+Available themes:
+- one-dark    : A dark theme with cool blue accents
+- solarized-dark : A popular dark theme with muted colors
+- dracula     : A dark theme with vibrant purple accents
+- monokai     : A dark theme with bright, contrasting colors`,
 
     contact: `
 Contact Information:
 
-Email: your.email@example.com
+Email: 📧 <a href="mailto:skinnynoizze@protonmail.com" target="_blank" rel="noopener noreferrer">skinnynoizze@protonmail.com</a>
+Telegram: 💬 <a href="https://t.me/sknnynzz" target="_blank" rel="noopener noreferrer">https://t.me/sknnynzz</a>    
+Twitter: 🐦 <a href="https://twitter.com/skinnynoizze" target="_blank" rel="noopener noreferrer">https://twitter.com/skinnynoizze</a>
+LinkedIn: 🔗 <a href="https://www.linkedin.com/in/santiago-men%C3%A9ndez-manj%C3%B3n-tartiere-3b3b3b3b3b/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/santiago-men%C3%A9ndez-manj%C3%B3n-tartiere-3b3b3b3b3b/</a>
 
 PGP Public Key:
 -----BEGIN PGP PUBLIC KEY BLOCK-----

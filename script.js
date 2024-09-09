@@ -1,4 +1,5 @@
 import { commandStrings } from "./commandStrings.js";
+import { changeLanguage } from './i18n.js';
 
 const terminal = document.getElementById("terminal");
 const userInput = document.getElementById("user-input");
@@ -145,21 +146,14 @@ function checkEasterEggs(cmd) {
       return "Nice try, but you don't have root access here!";
     case "exit":
       return "There is no escape. You're stuck with me forever!";
-    case "coffee":
-      return "☕ Here's your virtual coffee. Now back to coding!";
     case "matrix":
       return startMatrixEffect();
-    case "konami":
-      return "⬆️⬆️⬇️⬇️⬅️➡️⬅️➡️🅱️🅰️ Cheat mode activated!";
-    case "42":
-      return "Yes, that's the answer to life, the universe, and everything.";
-    case "ping":
-      return "Pong!";
-    case "hello world":
-      return "Hello, programmer! Ready to code?";
-    case "roll":
-      document.body.style.animation = "roll 4s 1";
-      return "Wheee!";
+      case "roll":
+        document.body.style.animation = "roll 4s 1";
+        setTimeout(() => {
+          document.body.style.animation = "";
+        }, 4000);
+        return "Wheee!";
     case "party":
       return startPartyMode();
     default:
@@ -359,47 +353,72 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  menuItems.forEach(item => {
-    item.addEventListener('click', (e) => {
-      const command = e.target.getAttribute('data-command');
-      const isParentMenu = item.parentElement.classList.contains('has-submenu');
-      const isExternalLink = item.getAttribute('target') === '_blank';
+  function handleMenuItemClick(e) {
+    const item = e.target;
+    const command = item.getAttribute('data-command');
+    const isParentMenu = item.parentElement.classList.contains('has-submenu');
+    const isExternalLink = item.getAttribute('target') === '_blank';
+    
+    if (command && !isParentMenu) {
+      e.preventDefault();
+      executeCommand(command);
+    } else if (isParentMenu) {
+      e.preventDefault();
+      item.parentElement.classList.toggle('active');
+    } else if (isExternalLink) {
+      setTimeout(closeMenu, 100);
+    }
+    
+    if (window.innerWidth <= 600 && !isParentMenu && (command || isExternalLink)) {
+      closeMenu();
+    }
+  }
+
+  function executeCommand(command) {
+    const userInput = document.getElementById('user-input');
+    userInput.value = command;
+    userInput.focus();
+    
+    const enterEvent = new KeyboardEvent('keyup', {
+      key: 'Enter',
+      bubbles: true,
+      cancelable: true
+    });
+    userInput.dispatchEvent(enterEvent);
+  }
+
+  function toggleMenuButton() {
+    if (window.innerWidth <= 600) {
+      menuToggle.style.display = 'block';
+    } else {
+      menuToggle.style.display = 'none';
+      closeMenu();
+    }
+  }
+
+  function handleOutsideClick(e) {
+    if (window.innerWidth <= 600) {
+      const isClickInsideMenu = terminalMenu.contains(e.target);
+      const isClickOnMenuToggle = menuToggle.contains(e.target);
       
-      if (command && !isParentMenu) {
-        e.preventDefault();
-        const userInput = document.getElementById('user-input');
-        userInput.value = command;
-        userInput.focus();
-        
-        // Simulate Enter key press
-        const enterEvent = new KeyboardEvent('keyup', {
-          key: 'Enter',
-          bubbles: true,
-          cancelable: true
-        });
-        userInput.dispatchEvent(enterEvent);
-        
-        // Close the menu after clicking a command (but not for parent menu items)
-        if (window.innerWidth <= 600) {
-          closeMenu();
-        }
-      } else if (isParentMenu) {
-        e.preventDefault(); // Prevent default action for parent menu items
-        // Toggle the active class for the submenu
-        item.parentElement.classList.toggle('active');
-      } else if (isExternalLink) {
-        // Close the menu after a short delay to allow the link to open
-        setTimeout(closeMenu, 100);
-      }
-      
-      // Close the menu after clicking a link or command, but not for parent menu items
-      if (window.innerWidth <= 600 && !isParentMenu && (command || isExternalLink)) {
+      if (!isClickInsideMenu && !isClickOnMenuToggle && terminalMenu.classList.contains('active')) {
         closeMenu();
       }
-    });
+    }
+  }
+
+  // Set up event listeners
+  menuItems.forEach(item => item.addEventListener('click', handleMenuItemClick));
+
+  menuToggle.addEventListener('click', () => {
+    terminalMenu.classList.toggle('active');
+    menuToggle.textContent = terminalMenu.classList.contains('active') ? '✕' : '☰';
   });
 
-  // Add menu toggle functionality for mobile devices
+  window.addEventListener('resize', toggleMenuButton);
+  document.addEventListener('click', handleOutsideClick);
+
+  // Initialize
   menuToggle.textContent = '☰';
   menuToggle.style.cssText = `
     background: none;
@@ -410,38 +429,12 @@ document.addEventListener('DOMContentLoaded', () => {
     display: none;
     position: fixed;
     right: 10px;
-    top: 10px;
+    top: 4px;
     z-index: 1002;
   `;
-
   document.body.appendChild(menuToggle);
+  toggleMenuButton();
 
-  menuToggle.addEventListener('click', () => {
-    terminalMenu.classList.toggle('active');
-    menuToggle.textContent = terminalMenu.classList.contains('active') ? '✕' : '☰';
-  });
-
-  // Handle submenu toggles on mobile
-  const hasSubmenuItems = document.querySelectorAll('#terminal-menu .has-submenu > a');
-  hasSubmenuItems.forEach(item => {
-    item.addEventListener('click', (e) => {
-      if (window.innerWidth <= 600) {
-        e.preventDefault();
-        item.parentElement.classList.toggle('active');
-      }
-    });
-  });
-
-  // Show/hide menu toggle based on screen width
-  function toggleMenuButton() {
-    if (window.innerWidth <= 600) {
-      menuToggle.style.display = 'block';
-    } else {
-      menuToggle.style.display = 'none';
-      closeMenu();
-    }
-  }
-
-  window.addEventListener('resize', toggleMenuButton);
-  toggleMenuButton(); // Initial call
+  // Make changeLanguage function available globally
+  window.changeLanguage = changeLanguage;
 });
