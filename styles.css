@@ -273,6 +273,7 @@
       font-family: monospace;
       font-size: 0.65em;
       overflow-x: hidden;
+      overflow-y: hidden;
       width: 100%;
     }
   }
