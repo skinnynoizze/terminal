@@ -19,11 +19,11 @@
     transition: background-color 0.3s, color 0.3s;
   }
   #terminal {
-    height: calc(100% - 40px); /* Subtract the height of the menu */
+    height: calc(100% - 50px); /* Subtract the height of the menu */
     overflow-y: auto;
     padding: 20px;
     box-sizing: border-box;
-    margin-top: 40px; /* Add margin to account for the menu */
+    margin-top: 50px; /* Add margin to account for the menu */
   }
   .hard-coded {
       margin-top: 10px;
