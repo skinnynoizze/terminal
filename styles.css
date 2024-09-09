@@ -76,11 +76,11 @@
   .ascii-art {
     display: flex;
     margin-top: -20px;
-    font-family: monospace;
+    /*font-family: monospace;*/
     white-space: pre;
-    line-height: 1;
+    /* line-height: 1; */
     color: var(--accent-color);
-    font-size: 0.7em;
+    font-size: 0.6em;
   }
   a {
     color: var(--accent-color);

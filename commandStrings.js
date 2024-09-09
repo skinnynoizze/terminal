@@ -13,7 +13,8 @@ theme     - Change color theme (usage: theme "theme-name")
 It's a new way to interact with my 📄 CV and showcase my interests.
 
 🤖 No AI was harmed in the 🛠️ development of this site.
-
+Always be polite with AI's, say please and thank you.
+<small><i>
 📌 Terminal Functionalities:
 - Tab completion for commands and arguments
 - Use UP and DOWN arrows to navigate through command history
@@ -26,6 +27,7 @@ It's a new way to interact with my 📄 CV and showcase my interests.
   - Custom cursor
   - Custom background
   - Custom font
+</i></small>
 `,
 
     cv: `# Santiago Menéndez-Manjón Tartiere

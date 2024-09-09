@@ -244,7 +244,7 @@ userInput.addEventListener("keyup", function (event) {
 
     const outputDiv = document.createElement("div");
     outputDiv.className = "output";
-    outputDiv.innerHTML = `<span style="color: var(--prompt-color);">guest@portfolio:~$</span> ${cmd}`;
+    outputDiv.innerHTML = `<span style="color: var(--prompt-color);">guest@terminalcv:~$</span> ${cmd}`;
     terminal.insertBefore(outputDiv, terminal.lastElementChild);
 
     const { result, applyMarkdown } = processCommand(cmd);
