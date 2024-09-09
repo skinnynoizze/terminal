@@ -21,9 +21,11 @@
   #terminal {
     height: calc(100% - 50px); /* Subtract the height of the menu */
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 20px;
     box-sizing: border-box;
     margin-top: 50px; /* Add margin to account for the menu */
+    width: 100%; /* Ensure full width */
   }
   .hard-coded {
       margin-top: 10px;
@@ -76,12 +78,11 @@
   .ascii-art {
     display: flex;
     margin-top: -20px;
-    font-family: monospace;
+    
     white-space: pre;
     line-height: 1;
     color: var(--accent-color);
-    text-shadow: 0 0 5px var(--accent-color);
-    font-size: 0.6em;
+    font-size: 0.7em;
   }
   a {
     color: var(--accent-color);
@@ -260,6 +261,20 @@
   @keyframes roll {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+  }
+
+  .ascii-art {
+    text-shadow: 0 0 5px var(--accent-color);
+  }
+
+  @media (max-width: 600px) {
+    .ascii-art {
+      flex-direction: column;
+      font-family: monospace;
+      font-size: 0.65em;
+      overflow-x: hidden;
+      width: 100%;
+    }
   }
 
   .crt-effect {
