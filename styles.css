@@ -76,10 +76,11 @@
   .ascii-art {
     display: flex;
     margin-top: -20px;
-    /*font-family: monospace;*/
+    font-family: monospace;
     white-space: pre;
-    /* line-height: 1; */
+    line-height: 1;
     color: var(--accent-color);
+    text-shadow: 0 0 5px var(--accent-color);
     font-size: 0.6em;
   }
   a {
@@ -259,20 +260,6 @@
   @keyframes roll {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-  }
-
-  .ascii-art {
-    text-shadow: 0 0 5px var(--accent-color);
-  }
-
-  @media (max-width: 600px) {
-    .ascii-art {
-      flex-direction: column;
-    }
-    .computer-screen {
-      margin-left: 0;
-      margin-top: 10px;
-    }
   }
 
   .crt-effect {
