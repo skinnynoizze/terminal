@@ -275,6 +275,50 @@
     }
   }
 
+  .crt-effect {
+    animation: 
+      power-on 2s ease-out forwards,
+      fast-tinker 0.1s steps(1, end) 20 forwards,
+      subtle-tinker 3s 2s infinite;
+  }
+  
+  
+  @keyframes power-on {
+    0% { 
+      filter: brightness(2) contrast(3) saturate(0);
+      transform: scale(0.8);
+    }
+    10% { 
+      filter: brightness(1.5) contrast(2) saturate(0.5);
+      transform: scale(1.02);
+    }
+    30% { 
+      filter: brightness(1.2) contrast(1.5) saturate(0.8);
+      transform: scale(1);
+    }
+    100% { 
+      filter: none;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes fast-tinker {
+    0%, 20%, 40%, 60%, 80% { transform: translate(0, 0); }
+    10%, 30%, 50%, 70%, 90% { transform: translate(-1px, 1px); }
+    5%, 25%, 45%, 65%, 85% { transform: translate(1px, -1px); }
+    15%, 35%, 55%, 75%, 95% { transform: translate(-1px, -1px); }
+    100% { transform: translate(1px, 1px); }
+  }
+  
+  @keyframes subtle-tinker {
+    0%, 98% { transform: translate(0, 0); }
+    98.2%, 98.4% { transform: translate(-1px, 1px); }
+    98.6%, 98.8% { transform: translate(1px, -1px); }
+    99%, 99.2% { transform: translate(-1px, -1px); }
+    99.4%, 99.6% { transform: translate(1px, 1px); }
+    99.8%, 100% { transform: translate(0, 0); }
+  }
+
 #matrixCanvas {
   display: none;
   position: fixed;

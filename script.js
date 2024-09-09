@@ -437,4 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Make changeLanguage function available globally
   window.changeLanguage = changeLanguage;
+
+
+  
 });
