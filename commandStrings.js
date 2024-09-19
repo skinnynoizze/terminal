@@ -33,7 +33,7 @@ Always be polite with AI's, say please and thank you.
     cv: `<pre><code class="language-markdown"># Santiago Menéndez-Manjón Tartiere
 
 **Cybersecurity Specialist & System Administrator**
-Oviedo, Spain | smmanjon@protonmail.com | https://smmanjon.dev
+Oviedo, Spain | smmanjon@protonmail.com | https://smmanjon-cv.vercel.app/
 
 ## Professional Summary
 

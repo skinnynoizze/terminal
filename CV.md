@@ -1,7 +1,7 @@
 # Santiago Menéndez-Manjón Tartiere
 
 **Cybersecurity Specialist & System Administrator**
-Oviedo, Spain | smmanjon@protonmail.com | https://smmanjon.dev
+Oviedo, Spain | smmanjon@protonmail.com | https://smmanjon-cv.vercel.app/
 
 ## Professional Summary
 
