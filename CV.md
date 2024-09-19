@@ -1,7 +1,7 @@
 # Santiago Menéndez-Manjón Tartiere
 
 **Cybersecurity Specialist & System Administrator**
-Oviedo, Spain | (+34) 649552291 | santimanjon@gmail.com
+Oviedo, Spain | smmanjon@protonmail.com | https://smmanjon.dev
 
 ## Professional Summary
 
@@ -17,7 +17,7 @@ Dedicated and versatile IT professional with over 13 years of experience in syst
 - Open-Source Solutions
 - Blockchain & Cryptocurrency
 - Web Development
-- Data Analysis & Machine Learning
+- Data Analysis
 
 ## Professional Experience
 
@@ -51,8 +51,8 @@ Dedicated and versatile IT professional with over 13 years of experience in syst
 
 ## Projects and Achievements
 
-- **Web3 Competition Platform - 2nd Place Winner**: Participated in a data and AI challenge on https://competitions.desights.ai/, a platform for crowdsourced blockchain solutions.
-- **OCEAN Token Sentiment Analysis**: Conducted a study on correlations between cryptocurrency token prices and Twitter sentiment using machine learning for text analysis. [View on GitHub](https://github.com/yourusername/OCEAN-Token-Sentiment-Analysis)
+- **Web3 Competition Platform - 2nd Place Winner**: Participated in a data and AI challenge on https://competitions.desights.ai/, a platform for crowdsourced data analysis competitions. 
+- **OCEAN Token Sentiment Analysis**: Conducted a study on correlations between cryptocurrency token prices and Twitter sentiment using machine learning for text analysis. [View on GitHub](https://github.com/skinnynoizze/ocean-challenge)
 
 ## Education and Certifications
 
@@ -72,20 +72,12 @@ Dedicated and versatile IT professional with over 13 years of experience in syst
 - **Cloud Platforms**: AWS, Azure
 - **Virtualization**: VMware, Hyper-V, Docker
 - **Security Tools**: EDRs, SIEM (Elastic), Email Gateways
-- **Web Development**: HTML, CSS, JavaScript, PHP, MySQL, WordPress, PrestaShop
+- **Web Development**: HTML, CSS, JavaScript, Next.JS, PHP, MySQL, WordPress, PrestaShop
 - **Version Control**: Git, GitHub
 - **Blockchain**: Fundamental understanding of blockchain technologies and DeFi
-- **Data Analysis**: Python, Machine Learning libraries (e.g., scikit-learn, NLTK)
+- **Data Analysis**: Python, Pandas.
 
 ## Languages
 
 - Spanish (Native)
 - English (Proficient - C2 reading/listening, C1 writing, B2 speaking)
-
-## Additional Interests
-
-- Open-source technology advocacy
-- Privacy and cryptography research
-- Blockchain and Web3 development
-- Data analysis and visualization
-- Participation in cybersecurity and blockchain competitions

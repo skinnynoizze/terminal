@@ -144,6 +144,8 @@ function checkEasterEggs(cmd) {
   switch (lowerCmd) {
     case "sudo":
       return "Nice try, but you don't have root access here!";
+    case "winamp":
+      return showWebamp();
     case "exit":
       return "There is no escape. You're stuck with me forever!";
     case "matrix":
@@ -170,19 +172,19 @@ function processCommand(cmd) {
   const [command, ...args] = cmd.trim().toLowerCase().split(" ");
   if (commands[command]) {
     const result = commands[command](args);
-    const applyMarkdown = command === 'cv'; // Apply markdown only for 'cv' command
-    return { result, applyMarkdown };
+    const applyHighlight = command === 'cv' || command === 'contact';
+    return { result, applyHighlight };
   } else {
-    return { result: `Command not found: ${command}. Type 'help' for available commands.`, applyMarkdown: false };
+    return { result: `Command not found: ${command}. Type 'help' for available commands.`, applyHighlight: false };
   }
 }
 
 function downloadCV() {
   // In a real scenario, you would have an actual PDF file to download
-  const pdfUrl = "path/to/your/cv.pdf";
+  const pdfUrl = "CV.pdf";
   const link = document.createElement("a");
   link.href = pdfUrl;
-  link.download = "John_Doe_CV.pdf";
+  link.download = "CV.pdf";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -247,16 +249,17 @@ userInput.addEventListener("keyup", function (event) {
     outputDiv.innerHTML = `<span style="color: var(--prompt-color);">guest@terminalcv:~$</span> ${cmd}`;
     terminal.insertBefore(outputDiv, terminal.lastElementChild);
 
-    const { result, applyMarkdown } = processCommand(cmd);
+    const { result, applyHighlight } = processCommand(cmd);
     const resultDiv = document.createElement("div");
     resultDiv.className = "output";
     
-    if (applyMarkdown) {
-      resultDiv.innerHTML = `<pre><code class="language-markdown">${result}</code></pre>`;
-      // Apply syntax highlighting
-      hljs.highlightElement(resultDiv.querySelector('code'));
-    } else {
-      resultDiv.innerHTML = result;
+    resultDiv.innerHTML = result;
+    
+    if (applyHighlight) {
+      // Apply syntax highlighting to all code blocks
+      resultDiv.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightElement(block);
+      });
     }
     
     terminal.insertBefore(resultDiv, terminal.lastElementChild);
@@ -438,3 +441,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Make changeLanguage function available globally
   window.changeLanguage = changeLanguage;
 });
+
+function showWebamp() {
+  const webampContainer = document.getElementById("webamp-container");
+  if (webampContainer.style.display === 'none') {
+    webampContainer.style.display = 'block';
+    return "Winamp is now visible. Enjoy your music!";
+  } else {
+    webampContainer.style.display = 'none';
+    return "Winamp has been hidden.";
+  }
+}
