@@ -5,6 +5,7 @@ It's a new way to interact with my 📄 CV and showcase my interests.
 
 🤖 No AI was harmed in the 🛠️ development of this site.
 Always be polite with AI's, say please and thank you.
+
 <small><i>
 📌 Terminal Functionalities:
 - Tab completion for commands and arguments
