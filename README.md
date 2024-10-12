@@ -1,3 +1,5 @@
+# Terminal CV
+
 🖥️ Terminal CV was made with ❤️ by Santiago Menéndez-Manjón Tartiere.
 It's a new way to interact with my 📄 CV and showcase my interests.
 
